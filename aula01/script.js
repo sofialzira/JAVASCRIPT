@@ -265,7 +265,7 @@ const removerPrimeiro = numeros.shift();
 console.log(removerPrimeiro);
 
 
-const arrayNovo = [ "cão", "gato"];
+const arrayNovo = ["cão", "gato"];
 
 const separador = arrayNovo.join("/");
 console.log(separador);
@@ -334,7 +334,7 @@ const frase3 = "Isto é 1 string ";
 const frase4 = "com 2 numeros";
 console.log(frase3 + frase4);
 
-// const frase5 = 'isto é' + 1 'string com' + 4 'numeros';
+// const frase5 = 'isto é' + 1 + 'string com' + 4 + 'numeros';
 // console.log(frase5);
 // ?????
 
