@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>exercicio02</title>
+  </head>
+  <body>
+    <script>
+      function calculo(preço, desconto) {
+        if (desconto === 0) {
+          return preço * 2;
+        } else if (desconto < 10) {
+          return preço + (preço * desconto) / 100;
+        } else if (desconto > 10 && desconto < 30) {
+          return preço - (preço * desconto) / 100;
+        }
+      }
+
+      console.log(calculo(20, 5));
+
+      console.log(calculo(20, 11));
+
+      console.log(calculo(30, 0));
+    </script>
+  </body>
+</html>
