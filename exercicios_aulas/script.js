@@ -336,7 +336,6 @@ console.log(frase3 + frase4);
 
 // const frase5 = 'isto é' + 1 + 'string com' + 4 + 'numeros';
 // console.log(frase5);
-// ?????
 
 
 
@@ -354,3 +353,155 @@ dataAlterada.setMonth(2);
 dataAlterada.setFullYear(2021); 
 console.log(dataAlterada);
 
+
+
+// exercicio função anonima 
+
+const funcaoAnonima = function () {
+    console.log("Sofia Oliveira");
+}
+
+funcaoAnonima();
+
+
+const somar = function (numero1, numero2) {
+    console.log(8 + 2);
+}
+
+somar();
+
+
+// IIFE
+
+// (function (a, b) {
+//     console.log("hello");
+// })(a, b);
+
+
+
+// exercicio IIFE 
+
+(function () {
+    console.log("SOFIA OLIVEIRA")
+})();
+
+
+console.log(
+    (function () {
+      return "SOFIA";
+    })()
+  );
+
+(function (a, b) {
+    console.log(a + b);
+})(2, 3);
+
+console.log(
+    (function (a, b) {
+      return a + b;
+    })(3, 3)
+  );
+
+
+
+
+// closure
+
+function teste() {
+    return function () {
+        return "hello!!!!!!!!!!!!!!!!";
+    };
+  }
+
+console.log(teste());
+
+
+
+
+function calcularIVA(iva) {
+    return function (produto) {
+        return iva * produto;
+    };
+}
+
+const calcularIVA6 = calcularIVA(6);
+const calcularIVA13 = calcularIVA(13);
+const calcularIVA23 = calcularIVA(23);
+
+console.log(calcularIVA13(100));
+
+calcularIVA(22)(200);
+calcularIVA(22)(200);
+calcularIVA(22)(1000);
+
+
+// exercicio closure 
+
+function dividir(valor) {
+    return function() {
+        return valor / 2;
+    }
+};
+console.log(dividir(10));
+
+dividir(10)();
+
+
+
+function divisao(valor1) {
+    return function (valor2) {
+        return valor1 / valor2;
+    }
+};
+
+const funcao = divisao(5);
+
+console.log(divisao(5));
+console.log(funcao(20));
+console.log(divisao(10)(2));
+
+
+// resolução 
+
+function dividir2(numero) {
+    return function () {
+      return numero / 2;
+    };
+  }
+  
+  dividir2(10)();
+  const divisao2 = dividir2(20);
+  divisao2();
+  
+  function divisao(primeiro) {
+    return function (segundo) {
+      return primeiro / segundo;
+    };
+  }
+  
+  divisao(10)(5);
+  
+  const divisao30 = divisao(30);
+  divisao30(10);
+  divisao30(5);
+
+
+
+  // exercicio funçoes construtoras
+
+  function Livro(titulo, autor) {
+    this.titulo = titulo;
+    this.autor = autor;
+  }
+
+  const livro1 = new Livro("Os três mosqueteiros.", "Alexandre Dumas"); 
+  const livro2 = new Livro("Os Maias.", "Eça de Queiroz");
+
+  console.log(livro1.titulo);
+  console.log(livro1.autor);
+  console.log(livro2.titulo);
+  console.log(livro2.autor);
+
+  livro1.titulo = "O Conde de Monte Cristo.";
+
+  console.log(livro1);
