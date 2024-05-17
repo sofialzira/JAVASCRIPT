@@ -505,3 +505,11 @@ function dividir2(numero) {
   livro1.titulo = "O Conde de Monte Cristo.";
 
   console.log(livro1);
+
+
+
+
+
+const nome = "sofia";
+
+const titulo = `${nome} apelido`;
