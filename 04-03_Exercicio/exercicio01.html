@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>exercicio01</title>
+  </head>
+  <body>
+    <script>
+
+        const funcaoAnonima = function () { 
+            console.log("isto foi demasiado rápido!");
+      }
+
+      funcaoAnonima();
+
+
+
+
+      function funcaoFormulario (campo) {
+        return function (resultado) {
+            return campo + ": " + resultado; 
+        }
+      }
+
+      funcaoFormulario();
+
+      console.log(funcaoFormulario("Nome") ("Sofia"));
+
+
+      function Produto (nome, valor) {
+        this.nome = nome;
+        this.valor = valor;
+      }
+
+      const Produto1 = new Produto ("Kobo", 100);
+
+      console.log(Produto1);
+
+      Produto1.valor = 2.5 
+
+      console.log(Produto1);
+
+      console.log(parseInt(2.5));
+
+    </script>
+  </body>
+</html>
