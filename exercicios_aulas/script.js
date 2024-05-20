@@ -508,8 +508,126 @@ function dividir2(numero) {
 
 
 
-
+//
 
 const nome = "sofia";
 
 const titulo = `${nome} apelido`;
+
+
+
+// operador condicional ternário
+
+const somaTernario = 10;
+const totalTernario = somaTernario > 10 ? "caro" : "barato";
+
+
+
+// .map (retorna algo, neste caso as palavras em maiuscula, para criar algo novo)
+
+const palavras = ["primeira", "segunda", "a", "tres"];
+
+const palavrasMaiusculas = palavras.map((palavra) => palavra.toUpperCase());
+
+
+const palavrasMaiusculas2 = [];
+for(let s = 0; s < palavras.length; s++){
+  palavrasMaiusculas2.push(palavras[s].toUpperCase());
+}
+
+
+// .forEach (corre posição a posição, nao retorna)
+
+palavras.forEach((palavra) => console.log(palavra));
+
+
+// .filter
+
+const palavrasMaiusculas3 = palavras.filter((palavra) => palavra.length > 3 && palavra.length < 8);
+
+
+// .reduce
+
+const resultadoFinal = palavras.reduce((resultado, palavra) => `${resultado} ${palavra}`, "Começa assim:");
+
+const carrinhoCompras = [
+  {
+    nome: "A",
+    preco: 10.9,
+  },
+  {
+    nome: "B",
+    preco: 9.9,
+  },
+  {
+    nome: "C",
+    preco: 19.8,
+  },
+  {
+    nome: "D",
+    preco: 209.9,
+  },
+];
+
+let totalCarrinhoCompras = 0;
+carrinhoCompras.forEach((produto) => (total += produto.preco));
+
+const totalCarrinhoCompras2 = carrinhoCompras.reduce(
+  (total, produto) => (total += produto.preco),
+  0
+);
+
+
+
+// destructuring - extrair dados de arrays 
+
+const [a, b, c, d] = palavras; 
+
+// const [primeiroProduto] = carrinhoCompras;
+// const [, segundoProduto] = carrinhoCompras;
+const [primeiroProduto, ...produtos] = carrinhoCompras;
+
+
+const conjuntoArrays = [...carrinhoCompras, ...palavras];
+
+
+// destructuring - extrair dados de objectos
+
+const aluno = {
+  nome: "antonio",
+  idade: 10,
+  escolaridade: 5,
+};
+
+const { nome: nomeAluno, idade: idadeAluno } = aluno; 
+
+
+
+
+// exercicio ES6
+
+var estudantes = [
+  { id: 1, nome: 'João', idade: 20 },
+  { id: 2, nome: 'Maria', idade: 22 },
+  { id: 3, nome: 'Pedro', idade: 18 },
+  { id: 4, nome: 'Ana', idade: 21 }
+];
+
+
+const encontrarAlunoId = (id) => estudantes.find(estudante => estudante.id === id);
+  console.log(encontrarAlunoId(3));
+
+
+
+
+
+const estudantesNomes = () =>
+ estudantes.map((estudante) => `Nome do estudante: ${estudante.nome}`);
+  console.log(estudantesNomes());
+
+
+
+
+const estudantesMaiorIdade = (idade => estudantes.filter(estudante => 
+  estudante.idade > idade));
+  console.log(estudantesMaiorIdade(19));
