@@ -43,14 +43,11 @@
         );
       console.log(nomeEmpresa());
 
+      const companyStartDate = () =>
+        companies.filter((company) => company.start > 1987);
+      console.log(companyStartDate());
 
-      const companyStartDate = (start) =>
-        companies.filter((company) => company.start > start);
-      console.log(companyStartDate(1987));
-
-      const somaAges = ages.reduce(
-        (accumulator, currentValue) => accumulator + currentValue
-      );
+      const somaAges = ages.reduce((accumulator, age) => accumulator + age, 0);
       console.log(somaAges);
 
       const { name, category } = companies[0];
@@ -63,18 +60,21 @@
       } = person;
       console.log(street);
 
+      // let { street } = person.adress;
 
-      const empresasResultado = 
-        companies.filter((company) => {
-            result = company.start > 1996 && company.start <= 2004
-          ? `verdadeiro`
-          : `falso`;
+      const empresasResultado = companies.filter((company) => {
+        result =
+          company.start > 1996 && company.start <= 2004
+            ? `verdadeiro`
+            : `falso`;
 
-          console.log(company.name + ": " +  result);
-        }
-    );
-    
+        console.log(company.name + ": " + result);
+      });
 
+      const getCompanies = () =>
+        companies.map((company) =>
+          company.start > 1996 && company.start <= 2004 ? `verdadeiro` : `falso`
+        );
     </script>
   </body>
 </html>
