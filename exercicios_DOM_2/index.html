@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="div"></div>
+
+    <script>
+
+        const container = document.createElement("div");
+        document.body.append(container);
+
+
+        container.innerHTML = `<ul>
+            <li>Exemplo 01</li>
+            <li>Exemplo02</li> </ul>
+            <p>isto é uma div</p>`;
+
+
+            
+        let addNewElement = document.querySelector("li")
+        console.log(addNewElement);
+
+        addNewElement.insertAdjacentHTML('beforeend', '<li>Exemplo 03</li>');
+
+
+        let elementToRemove = document.querySelector("p");
+        console.log(elementToRemove);
+        elementToRemove.remove();
+
+
+    </script>
+</body>
+</html>
