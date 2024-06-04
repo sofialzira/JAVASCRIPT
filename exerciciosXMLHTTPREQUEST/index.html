@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>XMLHttpRequest</title>
+  </head>
+  <body>
+    <script>
+      // primeiro exercicio
+
+      const request = new XMLHttpRequest();
+      request.open("GET", "https://dog.ceo/api/breed/hound/list");
+      request.send();
+      request.responseType = "json";
+
+      // request.onload = () => {
+      //   const dogs = request.response;
+      // };
+
+      request.addEventListener("load", () => {
+        const dogs = request.response;
+      });
+
+      // segundo exercicio
+
+      //   const loadAnimesFiltered = (yearParam) => {
+      //     const promise = new Promise((resolve, reject) => {
+      //       const request = new XMLHttpRequest();
+      //       request.open("GET", "https://api.jikan.moe/v4/top/anime");
+      //       request.responseType = "json";
+      //       request.send();
+
+      //       request.addEventListener("error", () => reject("errro!"));
+
+      //       request.addEventListener("load", () => {
+      //         const animesList = request.response.data;
+
+      //         const animesFiltered = animesList.filter(
+      //           (animeItem) => animeItem.year === yearParam
+      //         );
+
+      //         resolve(animesFiltered);
+      //       });
+      //     });
+
+      //     return promise;
+      //   };
+
+      //   const findAnimeByYear = async (year) => {
+      //     const response = await loadAnimesFiltered(year);
+
+      //     if (response.length === 0) {
+      //       console.log(`O ano ${year} não tem conteúdos.`);
+      //     } else {
+      //       response.map((animeItem) => console.log(animeItem.title));
+      //     }
+      //   };
+
+      // metodo fetch
+
+      //   fetch("https://api.jikan.moe/v4/top/anime", {
+      //     method: "GET",
+      //   })
+      //     .then((resposta) => resposta.json())
+      //     .then((dadosResposta) => console.log(dadosResposta.data));
+
+      //   const loadAnimes = async () => {
+      //     const resposta = await fetch("https://api.jikan.moe/v4/top/anime", {
+      //       method: "GET",
+      //     });
+
+      //     const dadosResposta = await resposta.json();
+      //     console.log(dadosResposta.data);
+      //   };
+
+      // terceiro exercicio
+
+    //   const loadAnimesFiltered = (yearParam) => {
+    //     return fetch("https://api.jikan.moe/v4/top/anime")
+    //       .then((response) => {
+    //         if (response.length === 0) {
+    //           console.log(`O ano ${year} não tem conteúdos.`);
+    //         }
+    //         return response.json();
+    //       })
+    //       .then((data) => {
+    //         const animesList = data.data;
+
+    //         const animesFiltered = animesList.filter(
+    //           (animeItem) => animeItem.year === yearParam
+    //         );
+
+    //         return animesFiltered;
+    //       });
+    //   };
+
+    //   const findAnimeByYear = async (year) => {
+    //     try {
+    //       const response = await loadAnimesFiltered(year);
+
+    //       if (response.length === 0) {
+    //         console.log(`O ano ${year} não tem conteúdos.`);
+    //       } else {
+    //         response.map((animeItem) => console.log(animeItem.title));
+    //       }
+    //     } catch (error) {
+    //       console.error("Erro ao buscar animes por ano:", error);
+    //     }
+    //   };
+
+      // exercicio resolução
+
+      const loadAnimesByYear = async (year) => {
+        const resposta = await fetch("https://api.jikan.moe/v4/top/anime");
+
+        const dadosResposta = await resposta.json();
+        const animesList = dadosResposta.data;
+
+        const animesFiltered = animesList.filter(
+          (animeItem) => animeItem.year === year
+        );
+
+        if (animesFiltered.length === 0) {
+          console.log(`O ano ${year} não tem conteúdos.`);
+        } else {
+          animesFiltered.map((animeItem) => console.log(animeItem.title));
+        }
+      };
+
+
+    </script>
+  </body>
+</html>
