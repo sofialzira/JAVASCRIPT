@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Classes</title>
+  </head>
+  <body>
+    <script>
+      class Carro {
+        constructor(marca, modelo) {
+          this.marca = marca;
+          this.modelo = modelo;
+        }
+        display() {
+          return `Este é um  $(this.marca)  $(this.modelo)`;
+        }
+      }
+
+      const carro1 = newCarro("BMW", "320");
+      const carro2 = newCarro("Renault", "Clio");
+
+      console.log(carro1.display());
+      console.log(carro2.display());
+
+      class Suv extends Carro {
+        construtor(marca, modelo, cor) {
+          super(marca, modelo);
+          this.cor = cor;
+        }
+
+        getAno() {
+          return this.ano;
+        }
+      }
+
+      const outroCarro = new Suv("Toyota", "XRC", 2024);
+      toyota.display();
+      toyota.getAno();
+    </script>
+  </body>
+</html>
