@@ -22,7 +22,7 @@
         }
 
         setProductPrice(productId, price) {
-          const product = this.products.find((p) => p.id === productId);
+          const product = this.products.find((product) => product.id === productId);
           if (product) {
             product.price = price;
           }
@@ -70,8 +70,9 @@
       ecommerce.addProduct(product03);
 
       console.log(ecommerce.getAllProducts());
+      
 
-      ecommerce.setProductPrice(2, 600);
+      ecommerce.setProductPrice(2, 200);
       console.log(ecommerce.getProductById(2));
     </script>
   </body>
