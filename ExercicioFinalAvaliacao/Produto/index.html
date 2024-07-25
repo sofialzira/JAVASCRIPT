@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Produto</title>
+  </head>
+  <body>
+    <script>
+      class Product {
+        constructor(category, title, description, id, rating, price, image) {
+          this.category = category;
+          this.title = title;
+          this.description = description;
+          this.id = id;
+          this.rating = rating;
+          this.price = price;
+          this.image = image;
+        }
+      }
+
+      fetch("https://fakestoreapi.com/products/1").then((response) => {
+        if (response.status !== 200) {
+          throw new Error("Something went wrong");
+        }
+        
+        response.json().then((jsonObject) => {
+            let newProduct = new Product(
+            jsonObject.category,
+            jsonObject.title,
+            jsonObject.description,
+            jsonObject.id,
+            jsonObject.rating,
+            jsonObject.image
+          )
+          console.log(newProduct);
+          // TO DO: 
+          // definição do objecto rating
+          // enviar elementos para o html 
+          
+
+        }); 
+    });
+
+    </script>
+  </body>
+</html>
