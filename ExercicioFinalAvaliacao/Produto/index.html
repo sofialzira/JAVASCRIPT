@@ -3,9 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
     <title>Produto</title>
   </head>
   <body>
+
+    <div class="product"> 
+      <div id="image-id" class="image-container">
+        
+      </div>
+      <div class="data-container">
+        <h1 id="title-id"></h1>
+        <p id="category-id"></p>
+        <p id="description-id"></p>
+        <p id="price-id"></p>
+        <p id="rating-count"></p>
+        <p id="rating-rate"></p>
+        <p id="id"></p>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
     <script>
       class Product {
         constructor(category, title, description, id, rating, price, image) {
@@ -19,24 +43,45 @@
         }
       }
 
+      class Rating {
+        constructor(count, rate) {
+          this.count = count;
+          this.rate = rate;
+        }
+      }
+
       fetch("https://fakestoreapi.com/products/1").then((response) => {
         if (response.status !== 200) {
           throw new Error("Something went wrong");
         }
         
         response.json().then((jsonObject) => {
-            let newProduct = new Product(
+          console.log(jsonObject.image);  
+          let newProduct = new Product(
             jsonObject.category,
             jsonObject.title,
             jsonObject.description,
             jsonObject.id,
-            jsonObject.rating,
+            new Rating(
+              jsonObject.rating.count,
+              jsonObject.rating.rate,
+            ),
+            jsonObject.price,
             jsonObject.image
           )
+
           console.log(newProduct);
-          // TO DO: 
-          // definição do objecto rating
-          // enviar elementos para o html 
+
+          document.getElementById("image-id").innerHTML = `<img class="product-image" src="${newProduct.image}" alt="myproduct">`;
+          document.getElementById("title-id").innerHTML = newProduct.title;
+          document.getElementById("category-id").innerHTML = newProduct.category;
+          document.getElementById("description-id").innerHTML = newProduct.description;
+          document.getElementById("price-id").innerHTML = newProduct.price;
+          document.getElementById("rating-count").innerHTML = newProduct.rating.count;
+          document.getElementById("rating-rate").innerHTML = newProduct.rating.rate;
+          document.getElementById("id").innerHTML = newProduct.id;
+
+
           
 
         }); 
