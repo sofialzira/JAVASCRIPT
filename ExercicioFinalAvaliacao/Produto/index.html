@@ -3,15 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <title>Produto</title>
   </head>
   <body>
-
-    <div class="product"> 
-      <div id="image-id" class="image-container">
-        
-      </div>
+    <div class="product-section">
+    <div class="product">
+      <div id="image-id" class="image-container"></div>
       <div class="data-container">
         <h1 id="title-id"></h1>
         <p id="category-id"></p>
@@ -22,13 +20,12 @@
         <p id="id"></p>
       </div>
     </div>
-
-
-
-
-
-
-
+    <div class="related-products"></div>
+    <footer>
+      <span class="copywrite"></span>
+    </footer>
+  </div>
+    
 
     <script>
       class Product {
@@ -50,25 +47,23 @@
         }
       }
 
-      fetch("https://fakestoreapi.com/products/1").then((response) => {
+      function fetchProduct(productId) {
+        fetch(`https://fakestoreapi.com/products/${productId}`).then((response) => {
         if (response.status !== 200) {
           throw new Error("Something went wrong");
         }
-        
+
         response.json().then((jsonObject) => {
-          console.log(jsonObject.image);  
+          console.log(jsonObject.image);
           let newProduct = new Product(
             jsonObject.category,
             jsonObject.title,
             jsonObject.description,
             jsonObject.id,
-            new Rating(
-              jsonObject.rating.count,
-              jsonObject.rating.rate,
-            ),
+            new Rating(jsonObject.rating.count, jsonObject.rating.rate),
             jsonObject.price,
             jsonObject.image
-          )
+          );
 
           console.log(newProduct);
 
@@ -80,12 +75,56 @@
           document.getElementById("rating-count").innerHTML = newProduct.rating.count;
           document.getElementById("rating-rate").innerHTML = newProduct.rating.rate;
           document.getElementById("id").innerHTML = newProduct.id;
+        });
+      });
+      }
+      
+      function createRelatedProducts(newProduct) {
+        const relatedProductsCard = document.createElement("div");
+        relatedProductsCard.className = "related-product-card";
+        relatedProductsCard.innerHTML = `
+      <div class="related-product-image"><img src="${newProduct.image}"></div>
+      <div class="related-product-info">
+      <h3 class="related-product-title">${newProduct.title}</h3>
+ 
+      <p class="related-product-price">$${newProduct.price}</p>
+      </div>
+      `;
+        return relatedProductsCard;
+      };
+
+      async function loadRelatedProduct() {
+        try {
+        const response = await fetch("https://fakestoreapi.com/products/category/jewelery");
+        const relatedProducts = await response.json();
+        let relatedContainer = document.querySelector(".related-products");
+        relatedProducts.slice(1, 4).forEach((product) => {
+          const relatedProductCard = createRelatedProducts(product);
+          relatedContainer.appendChild(relatedProductCard);
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }
 
 
-          
 
-        }); 
-    });
+      async function loadProducts() {
+        const params = new URLSearchParams(window.location.search);
+        const productId = params.get("id") || 1;
+        const product = await fetchProduct(productId);
+       
+      };
+
+      document.addEventListener("DOMContentLoaded", () => {
+        loadProducts();
+        loadRelatedProduct();
+
+        const footerDate = new Date();
+        const footerText = document.querySelector(".copywrite");
+        footerText.textContent = `Copyright ${footerDate.getFullYear()}`;
+      });
+      
 
     </script>
   </body>
